@@ -28,8 +28,9 @@ _generate_keys(){
 _copy_encrypt(){
     # We get the output of xclip and encrypt it
     echo "$(xclip -o)" | openssl rsautl -encrypt -inkey $PUBLIC_KEY_PATH -pubin -out $SECRET_STORE_PATH
+
     # We save a custom message to the clipboard
-    echo "-css encrypted value-" | xclip -selection clipboard
+    echo "-css-encrypted-value-" | xclip -i
 }
 
 _decrypt_paste(){
@@ -40,7 +41,7 @@ _decrypt_paste(){
     sleep 0.5;
     xdotool getactivewindow type "$string"
 
-    echo "" | xclip -selection clipboard
+    echo "" | xclip -i
 }
 
 _help_commands(){
